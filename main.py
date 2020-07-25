@@ -1,6 +1,7 @@
 import RPi.GPIO as GPIO
 import motor.motor as motor
 import csv
+import time
 
 pins = {}       # Save as All sensor information
 
@@ -12,6 +13,7 @@ for line in rdr:
 f.close()
 
 # Setting GPIO Mode
+GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 
 # Setting GPIO In, Out
