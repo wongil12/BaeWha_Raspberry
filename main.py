@@ -48,10 +48,10 @@ try:
         distance = round(distance, 2)
 
         # Open
-        if distance <= 100:
+        if distance <= 50:
             motor.Open(motorPWM)
         # Close
-        elif distance > 100:
+        elif distance > 50:
             motor.Close(motorPWM)
 except KeyboardInterrupt:
     motorPWM.stop()
