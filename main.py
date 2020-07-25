@@ -18,7 +18,7 @@ GPIO.setmode(GPIO.BCM)
 for k, v in pins.items():
     if v[1] == "OUT" :
         GPIO.setup(int(v[0]), GPIO.OUT)
-    elif v[1] == "IN"
+    elif v[1] == "IN" :
         GPIO.setup(int(v[0]), GPIO.IN)
 
 # Setting Variables
