@@ -27,6 +27,8 @@ for k, v in pins.items():
 motorPWM = GPIO.PWM(pins['motor'][0], 50)
 motorPWM.start(0)
 
+openFlag = False
+
 # Check Sensor(Open, Close)
 try:
     while True:
@@ -44,15 +46,27 @@ try:
             pulse_end = time.time()
         
         pulse_duration = pulse_end - pulse_start
-        distance = pulse_start * 17000
+        distance = pulse_duration * 17000
         distance = round(distance, 2)
 
-        # Open
-        if distance <= 50:
+        # set Open Flag
+        if distance <= 20:
+            openFlag = True
+            openTime = time.time()
+
+        elif distance > 20:
+            closeTime = time.time()
+            # Keep Open for 5 sec
+            if closeTime - openTime >= 5:
+                openFlag = False
+            else:
+                openFlag = True
+        
+        if openFlag == True:
             motor.Open(motorPWM)
-        # Close
-        elif distance > 50:
+        elif openFlag == False:
             motor.Close(motorPWM)
+        
 except KeyboardInterrupt:
     motorPWM.stop()
 GPIO.cleanup()
