@@ -62,8 +62,10 @@ try:
             else:
                 openFlag = True
         
+        # Motor Open
         if openFlag == True:
             motor.Open(motorPWM)
+        # Motor Close
         elif openFlag == False:
             motor.Close(motorPWM)
         
