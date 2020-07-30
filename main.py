@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
-import Adafruit_DHT
-import board
+# import Adafruit_DHT
+# import board
 import csv
 import time
 import motor.motor as motor
@@ -51,6 +51,9 @@ try:
         distance = pulse_duration * 17000
         distance = round(distance, 2)
 
+        openTime = 0
+        closeTime = 0
+        
         # set Open Flag
         if distance <= 20:
             openFlag = True
