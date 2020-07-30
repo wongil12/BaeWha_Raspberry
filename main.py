@@ -1,7 +1,9 @@
 import RPi.GPIO as GPIO
-import motor.motor as motor
+import Adafruit_DHT
+import board
 import csv
 import time
+import motor.motor as motor
 
 pins = {}       # Save as All sensor information
 

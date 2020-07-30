@@ -1,3 +1,5 @@
 motor,18,OUT
 openTrig,16,OUT
 openEcho,12,IN
+inDHT,4,IN
+outDHT,21,IN
