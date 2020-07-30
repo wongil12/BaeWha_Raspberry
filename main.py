@@ -31,6 +31,9 @@ motorPWM.start(0)
 
 openFlag = False
 
+openTime = 0
+closeTime = 0
+
 # Check Sensor(Open, Close)
 try:
     while True:
@@ -51,9 +54,6 @@ try:
         distance = pulse_duration * 17000
         distance = round(distance, 2)
 
-        openTime = 0
-        closeTime = 0
-        
         # set Open Flag
         if distance <= 20:
             openFlag = True
