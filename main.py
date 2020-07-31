@@ -1,8 +1,8 @@
 import RPi.GPIO as GPIO
 import csv
 import time
-import Motor.motor as motor
-import Dht.dht as dht
+import motor.motor as motor
+import dht.dht as dht
 
 pins = {}       # Save as All sensor information
 
