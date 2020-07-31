@@ -3,6 +3,8 @@ import csv
 import time
 import motor.motor as motor
 import dht.dht as dht
+import board
+import adafruit_dht
 
 pins = {}       # Save as All sensor information
 
@@ -31,6 +33,9 @@ motorPWM.start(0)
 openFlag = False
 
 openTime = 0
+
+inDht = adafruit_dht.DHT11(board.D4)
+outDht = adafruit_dht.DHT11(board.D21)
 closeTime = 0
 
 # timezone setting
@@ -79,8 +84,10 @@ try:
         # Get Temperature And Get Humidity
         if dhtStartTime + 60 > time.time() :
             dhtStartTime = time.time()
-            inTemp, inHum, outTemp, outHum = dht.getDht()
-            print("inTemp: "+str(inTemp)+" inHum: "+str(inHum)+" outTemp: "+str(outTemp)+" outHum: "+str(outHum))
+            # inTemp, inHum, outTemp, outHum = dht.getDht()
+            tmp = inDht.temperature
+            hum = inDht.humidity
+            print("inTemp: "+str(tmp)+" inHum: "+str(hum)+" outTemp: "+str(tmp)+" outHum: "+str(hum))
             
 except KeyboardInterrupt:
     motorPWM.stop()
