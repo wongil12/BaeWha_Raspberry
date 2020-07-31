@@ -1,9 +1,8 @@
 import RPi.GPIO as GPIO
-# import Adafruit_DHT
-# import board
 import csv
 import time
-import motor.motor as motor
+import Motor.motor as motor
+import Dht.dht as dht
 
 pins = {}       # Save as All sensor information
 
@@ -33,6 +32,9 @@ openFlag = False
 
 openTime = 0
 closeTime = 0
+
+# timezone setting
+dhtStartTime = time.time()
 
 # Check Sensor(Open, Close)
 try:
@@ -74,6 +76,12 @@ try:
         elif openFlag == False:
             motor.Close(motorPWM)
         
+        # Get Temperature And Get Humidity
+        if dhtStartTime + 60 > time.time() :
+            dhtStartTime = time.time()
+            inTemp, inHum, outTemp, outHum = dht.getDht()
+            print("inTemp: "+str(inTemp)+" inHum: "+str(inHum)+" outTemp: "+str(outTemp)+" outHum: "+str(outHum))
+            
 except KeyboardInterrupt:
     motorPWM.stop()
 GPIO.cleanup()
