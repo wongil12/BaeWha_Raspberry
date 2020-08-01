@@ -2,6 +2,7 @@ import RPi.GPIO as GPIO
 import csv
 import time
 import motor.motor as motor
+import buzzer.buzzer as buzzer
 import board
 import adafruit_dht
 
@@ -27,6 +28,7 @@ for k, v in pins.items():
 
 # Setting Variables
 motorPWM = GPIO.PWM(pins['motor'][0], 50)
+buzzerPWM = GPIO.PWM(pins['buzzer'][0], 100)
 motorPWM.start(0)
 
 openFlag = False
@@ -67,7 +69,7 @@ try:
         elif distance > 20:
             closeTime = time.time()
             # Keep Open for 5 sec
-            if closeTime - openTime >= 5:
+            if closeTime - openTime >= 3:
                 openFlag = False
             else:
                 openFlag = True
@@ -75,6 +77,7 @@ try:
         # Motor Open
         if openFlag == True:
             motor.Open(motorPWM)
+            buzzer.melody(buzzerPWM)
         # Motor Close
         elif openFlag == False:
             motor.Close(motorPWM)
