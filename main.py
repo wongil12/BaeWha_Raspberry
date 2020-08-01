@@ -2,7 +2,6 @@ import RPi.GPIO as GPIO
 import csv
 import time
 import motor.motor as motor
-import tempHum.tempHum as dht
 import board
 import adafruit_dht
 
@@ -85,7 +84,8 @@ try:
         if dhtStartTime + 20 < time.time() :
             dhtStartTime = time.time()
             # inTemp, inHum, outTemp, outHum = dht.getDht()
-            temp, hum = dht.getDht(outDht)
+            temp = outDht.temperature
+            hum = outDht.humidity
             print("outTemp: "+str(temp)+" outTemp: "+str(hum))
             
 except KeyboardInterrupt:
