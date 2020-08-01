@@ -34,7 +34,6 @@ openFlag = False
 openTime = 0
 
 outDht = adafruit_dht.DHT11(board.D4)
-outDht = adafruit_dht.DHT11(board.D21)
 closeTime = 0
 
 # timezone setting
