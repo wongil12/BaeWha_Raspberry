@@ -77,19 +77,18 @@ try:
         # Motor Open
         if openFlag == True:
             motor.Open(motorPWM)
-            buzzer.melody(buzzerPWM)
         # Motor Close
         elif openFlag == False:
             motor.Close(motorPWM)
-        
         # Get Temperature And Get Humidity
         if dhtStartTime + 60 < time.time() :
             dhtStartTime = time.time()
             temp = outDht.temperature
             hum = outDht.humidity
             print("outTemp: "+str(temp)+" outTemp: "+str(hum))
-            
+        if GPIO.input(pins['fire'][0]) == 0
+            buzzer.melody(buzzerPWM)
+            print("Fire!!!!!")
 except KeyboardInterrupt:
     motorPWM.stop()
-    buzzerPWM.stop()
 GPIO.cleanup()

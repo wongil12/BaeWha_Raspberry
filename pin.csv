@@ -4,3 +4,4 @@ openEcho,12,IN
 inDHT,4,IN
 outDHT,21,IN
 buzzer,13,OUT
+fire,6,IN
