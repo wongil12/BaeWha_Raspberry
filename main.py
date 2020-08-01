@@ -86,7 +86,7 @@ try:
             temp = outDht.temperature
             hum = outDht.humidity
             print("outTemp: "+str(temp)+" outTemp: "+str(hum))
-        if GPIO.input(pins['fire'][0]) == 0
+        if GPIO.input(pins['fire'][0]) == 0:
             buzzer.melody(buzzerPWM)
             print("Fire!!!!!")
 except KeyboardInterrupt:
