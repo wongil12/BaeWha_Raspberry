@@ -34,8 +34,8 @@ openFlag = False
 
 openTime = 0
 
-#inDht = adafruit_dht.DHT11(board.D4)
-#outDht = adafruit_dht.DHT11(board.D21)
+outDht = adafruit_dht.DHT11(board.D4)
+outDht = adafruit_dht.DHT11(board.D21)
 closeTime = 0
 
 # timezone setting
@@ -85,8 +85,8 @@ try:
         if dhtStartTime + 20 < time.time() :
             dhtStartTime = time.time()
             # inTemp, inHum, outTemp, outHum = dht.getDht()
-            a,b,c,d = dht.getDht()
-            print("inTemp: "+str(a)+" inHum: "+str(b)+" outTemp: "+str(c)+" outHum: "+str(d))
+            temp, hum = dht.getDht(outDht)
+            print("outTemp: "+str(temp)+" outTemp: "+str(hum))
             
 except KeyboardInterrupt:
     motorPWM.stop()
