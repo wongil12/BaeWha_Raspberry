@@ -84,9 +84,10 @@ try:
         if dhtStartTime + 20 < time.time() :
             dhtStartTime = time.time()
             # inTemp, inHum, outTemp, outHum = dht.getDht()
-            temp = outDht.temperature
-            hum = outDht.humidity
-            print("outTemp: "+str(temp)+" outTemp: "+str(hum))
+            num = [0,0]
+            num[0] = outDht.temperature
+            num[1] = outDht.humidity
+            print("outTemp: "+str(num[0])+" outTemp: "+str(num[1]))
             
 except KeyboardInterrupt:
     motorPWM.stop()
