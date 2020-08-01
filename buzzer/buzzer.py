@@ -10,4 +10,3 @@ def melody(pwm):
             time.sleep(1)
         else:
             time.sleep(0.5)
-    p.stop()

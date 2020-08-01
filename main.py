@@ -91,4 +91,5 @@ try:
             
 except KeyboardInterrupt:
     motorPWM.stop()
+    buzzerPWM.stop()
 GPIO.cleanup()
