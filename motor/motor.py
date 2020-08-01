@@ -1,9 +1,9 @@
 # Open Module
 def Open(pwm):
-    pwm.ChangeDutyCycle(12.5)
+    pwm.ChangeDutyCycle(12)
     print("Open")
 
 # Close Module
 def Close(pwm):
-    pwm.ChangeDutyCycle(7.5)
+    pwm.ChangeDutyCycle(3)
     print("Close")

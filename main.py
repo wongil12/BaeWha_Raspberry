@@ -82,7 +82,7 @@ try:
             motor.Close(motorPWM)
         
         # Get Temperature And Get Humidity
-        if dhtStartTime + 60 < time.time() :
+        if dhtStartTime + 20 < time.time() :
             dhtStartTime = time.time()
             # inTemp, inHum, outTemp, outHum = dht.getDht()
             a,b,c,d = dht.getDht()
