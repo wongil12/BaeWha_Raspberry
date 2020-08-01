@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 import csv
 import time
 import motor.motor as motor
-import dht.dht as dht
+import tempHum.tempHum as dht
 import board
 import adafruit_dht
 
