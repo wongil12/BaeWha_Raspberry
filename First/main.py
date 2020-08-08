@@ -43,9 +43,9 @@ dhtStartTime = time.time()
 
 # Check Sensor(Open, Close)
 try:
+    pulse_start = 0
+    pulse_end = 0
     while True:
-        pulse_start = 0
-        pulse_end = 0
         GPIO.output(pins['openTrig'][0], False)
         time.sleep(0.5)
         
