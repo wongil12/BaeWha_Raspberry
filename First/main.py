@@ -45,6 +45,8 @@ dhtStartTime = time.time()
 try:
     pulse_start = 0
     pulse_end = 0
+    deep_start = 0
+    deep_end = 0
     while True:
         GPIO.output(pins['openTrig'][0], False)
         time.sleep(0.5)
@@ -62,7 +64,7 @@ try:
         pulse_duration = pulse_end - pulse_start
         distance = pulse_duration * 17000
         distance = round(distance, 2)
-        print(distance)
+
         # set Open Flag
         if distance <= 20:
             openFlag = True
@@ -75,7 +77,23 @@ try:
                 openFlag = False
             else:
                 openFlag = True
+        #check Deep
+        GPIO.output(pins['deepTrig'][0], False)
+        time.sleep(0.5)
         
+        GPIO.output(pins['deepTrig'][0], True)
+        time.sleep(0.00001)
+        GPIO.output(pins['deepTrig'][0], False)
+        
+        while GPIO.input(pins['deepEcho'][0]) == 0:
+            deep_start = time.time()
+        
+        while GPIO.input(pins['deepEcho'][0]) == 1:
+            deep_end = time.time()
+        
+        deep_duration = deep_end - deep_start
+        deep_distance = deep_duration * 17000
+        deep_distance = round(deep_distance, 2)
         # Motor Open
         if openFlag == True:
             motor.Open(motorPWM)
