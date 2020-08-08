@@ -35,7 +35,9 @@ openFlag = False
 
 openTime = 0
 
-outDht = adafruit_dht.DHT11(board.D4)
+
+inDht = adafruit_dht.DHT11(board.D4) 
+outDht = adafruit_dht.DHT11(board.D21) 
 closeTime = 0
 
 # timezone setting
@@ -94,7 +96,11 @@ try:
         deep_duration = deep_end - deep_start
         deep_distance = deep_duration * 17000
         deep_distance = round(deep_distance, 2)
-        print(pins['toggle'][0])
+
+        if GPIO.input(pins['fire'][0]) == 0:
+            buzzer.melody(buzzerPWM)
+            print("Fire!!!!!")
+            openFlag = True
         # Motor Open
         if openFlag == True:
             motor.Open(motorPWM)
@@ -104,12 +110,11 @@ try:
         # Get Temperature And Get Humidity
         if dhtStartTime + 60 < time.time() :
             dhtStartTime = time.time()
-            temp = outDht.temperature
-            hum = outDht.humidity
-            print("outTemp: "+str(temp)+" outTemp: "+str(hum))
-        if GPIO.input(pins['fire'][0]) == 0:
-            buzzer.melody(buzzerPWM)
-            print("Fire!!!!!")
+            iTemp = inDht.temperature
+            iHum = inDht.humidity
+            oTemp = outDht.temperature
+            oHum = outDht.humidity
+            print("inTemp: " + str(iTemp) + "inHum: " + str(iHum) + "outTemp: "+str(oTemp)+" outTemp: "+str(oHum))
 except KeyboardInterrupt:
     motorPWM.stop()
 GPIO.cleanup()
