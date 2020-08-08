@@ -94,7 +94,7 @@ try:
         deep_duration = deep_end - deep_start
         deep_distance = deep_duration * 17000
         deep_distance = round(deep_distance, 2)
-        print(deep_distance)
+        print(pins['toggle'][0])
         # Motor Open
         if openFlag == True:
             motor.Open(motorPWM)
