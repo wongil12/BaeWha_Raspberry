@@ -100,7 +100,6 @@ try:
         if GPIO.input(pins['fire'][0]) == 0:
             buzzer.melody(buzzerPWM)
             print("Fire!!!!!")
-            openFlag = True
         # Motor Open
         if openFlag == True:
             motor.Open(motorPWM)
@@ -108,7 +107,7 @@ try:
         elif openFlag == False:
             motor.Close(motorPWM)
         # Get Temperature And Get Humidity
-        if dhtStartTime + 60 < time.time() :
+        if dhtStartTime + 10 < time.time() :
             dhtStartTime = time.time()
             iTemp = inDht.temperature
             iHum = inDht.humidity
