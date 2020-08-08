@@ -62,7 +62,7 @@ try:
         pulse_duration = pulse_end - pulse_start
         distance = pulse_duration * 17000
         distance = round(distance, 2)
-
+        print(distance)
         # set Open Flag
         if distance <= 20:
             openFlag = True
